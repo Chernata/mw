@@ -88,7 +88,7 @@
       display: flex;
       align-items: center;
       gap: 28px;
-      padding: 8px 8px 8px 14px;
+      padding: 8px 8px 8px 8px;
       background: rgba(255, 255, 255, 0.95);
       border: 1px solid var(--border);
       border-radius: 9999px;
@@ -468,10 +468,24 @@
     }
 
     @media (max-width: 600px) {
-      .nav-pill { gap: 10px; padding: 6px 6px 6px 10px; }
-      .nav-name { font-size: 13px; }
-      .nav-link { font-size: 13px; }
-      .btn-talk { font-size: 11px; padding: 8px 12px 7px; letter-spacing: 0.02em; }
+      .nav-pill {
+        gap: 10px;
+        padding: 6px 6px 6px 10px;
+      }
+
+      .nav-name {
+        font-size: 13px;
+      }
+
+      .nav-link {
+        font-size: 13px;
+      }
+
+      .btn-talk {
+        font-size: 11px;
+        padding: 8px 12px 7px;
+        letter-spacing: 0.02em;
+      }
     }
 
     @media (max-width: 860px) {
