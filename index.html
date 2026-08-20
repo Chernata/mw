@@ -51,6 +51,25 @@ img{display:block;max-width:100%}
 .nav-cta{font-family:var(--mono);font-size:20px;line-height:1;text-transform:uppercase;
   color:#fff;border:1px solid #fff;border-radius:999px;padding:12px 20px 14px;white-space:nowrap;transition:.2s;flex:none}
 .nav-cta:hover{background:#fff;color:#1d1d1d}
+.burger-btn{display:none;align-items:center;justify-content:center;width:42px;height:42px;border-radius:50%;
+  background:transparent;border:none;flex:none;cursor:pointer;padding:0;transition:background .2s}
+.burger-btn:hover{background:rgba(255,255,255,.06)}
+.burger-box{position:relative;width:20px;height:14px;display:block}
+.burger-btn .line{position:absolute;left:0;width:20px;height:2px;border-radius:1px;background:#fff;
+  transition:transform .25s ease,opacity .2s ease;transform-origin:center}
+.burger-btn .l1{top:0}
+.burger-btn .l2{top:6px}
+.burger-btn .l3{top:12px}
+.burger-btn.open .l1{transform:translateY(6px) rotate(45deg)}
+.burger-btn.open .l2{opacity:0}
+.burger-btn.open .l3{transform:translateY(-6px) rotate(-45deg)}
+.nav-dropdown{max-height:0;overflow:hidden;transition:max-height .28s ease;margin-top:8px;
+  width:max-content;max-width:calc(100% - 32px);margin-left:auto;margin-right:auto;pointer-events:none}
+.nav-dropdown.open{max-height:260px;pointer-events:auto}
+.nav-dropdown-inner{background:var(--surface);border-radius:20px;padding:8px}
+.nav-dropdown-inner a{display:block;padding:14px 16px;font-family:var(--pressura);font-size:20px;color:#fff;text-decoration:none;border-radius:12px;transition:background .15s;white-space:nowrap}
+.nav-dropdown-inner a:hover,.nav-dropdown-inner a[aria-current]{background:rgba(255,255,255,.06)}
+.nav-dropdown-inner a+a{margin-top:2px}
 
 /* ---------- Hero ---------- */
 .hero{padding-top:107px;padding-bottom:48px}
@@ -128,6 +147,8 @@ img{display:block;max-width:100%}
 @media (max-width:860px){
   .grid{grid-template-columns:1fr}
   .nav-links{display:none}
+  .brand{display:none}
+  .burger-btn{display:flex}
   .hero{padding-top:64px;padding-bottom:40px}
   .hero h1{font-size:52px;line-height:56px;letter-spacing:-1px}
   .hero .lede{font-size:20px;line-height:29px;width:auto}
@@ -167,6 +188,13 @@ ym(109208817,"init",{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",
       <img class="avatar" src="images/Me.png" alt="Natalie Cher">
       <span class="name">Natalie Cher</span>
     </a>
+    <button class="burger-btn" id="navBurger" aria-label="Menu" aria-expanded="false" aria-controls="navDropdown">
+      <span class="burger-box">
+        <span class="line l1"></span>
+        <span class="line l2"></span>
+        <span class="line l3"></span>
+      </span>
+    </button>
     <div class="nav-links">
       <a href="#work">Work</a>
       <a href="/about/">About</a>
@@ -174,6 +202,13 @@ ym(109208817,"init",{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",
     </div>
     <a class="nav-cta" href="mailto:nataliecher@proton.me">Let's talk</a>
   </nav>
+  <div class="nav-dropdown" id="navDropdown">
+    <div class="nav-dropdown-inner">
+      <a href="#work">Work</a>
+      <a href="/about/">About</a>
+      <a href="https://drive.google.com/file/d/1mitcBbMoCnbXF9P812xzD7M0WFg4RUxU/view?usp=sharing" target="_blank" rel="noopener">Resume</a>
+    </div>
+  </div>
 </header>
 
 <main id="top">
@@ -202,7 +237,7 @@ ym(109208817,"init",{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",
           <div class="card-text">
             <div class="card-meta">
               <div class="tags"><span class="tag tag--fill">B2B</span><span class="tag tag--outline">SportTech</span><span class="tag tag--outline">WebApp</span></div>
-              <span class="year">2024–Present</span>
+              <span class="year">2024–Now</span>
             </div>
             <div class="card-body">
               <h3 class="card-title">Coaching workspace</h3>
@@ -340,6 +375,18 @@ ym(109208817,"init",{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",
   if(!('IntersectionObserver' in window)){els.forEach(function(e){e.classList.add('in')});return;}
   var io=new IntersectionObserver(function(en){en.forEach(function(x){if(x.isIntersecting){x.target.classList.add('in');io.unobserve(x.target);}});},{threshold:0.12,rootMargin:'0px 0px -8% 0px'});
   els.forEach(function(e){io.observe(e)});
+})();
+</script>
+<script>
+(function(){
+  var btn=document.getElementById('navBurger');
+  var dd=document.getElementById('navDropdown');
+  if(!btn||!dd) return;
+  btn.addEventListener('click',function(){
+    var open=btn.classList.toggle('open');
+    dd.classList.toggle('open');
+    btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+  });
 })();
 </script>
 </body>
